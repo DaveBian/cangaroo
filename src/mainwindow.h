@@ -79,6 +79,8 @@ private slots:
 
     void on_actionCan_Status_View_triggered();
 
+    void on_actionAbout_Qt_triggered();
+
 private:
     Ui::MainWindow *ui;
     SetupDialog *_setupDlg;

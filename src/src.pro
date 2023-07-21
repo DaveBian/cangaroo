@@ -1,10 +1,11 @@
-lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
+lessThan(QT_MAJOR_VERSION, 6): error("requires Qt 6")
 
 QT += core gui
 QT += widgets
 QT += xml
 QT += charts
 QT += serialport
+QT += core5compat
 
 TARGET = cangaroo
 TEMPLATE = app
@@ -48,3 +49,5 @@ include($$PWD/driver/CANBlastDriver/CANBlastDriver.pri)
 include($$PWD/driver/SLCANDriver/SLCANDriver.pri)
 
 win32:include($$PWD/driver/CandleApiDriver/CandleApiDriver.pri)
+
+RC_ICONS = $$PWD/assets/cangaroo.ico

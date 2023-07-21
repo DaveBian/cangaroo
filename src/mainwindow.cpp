@@ -119,7 +119,7 @@ QMainWindow *MainWindow::createTab(QString title)
 {
     QMainWindow *mm = new QMainWindow(this);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(0xeb, 0xeb, 0xeb));
+    pal.setColor(QPalette::Window, QColor(0xeb, 0xeb, 0xeb));
     mm->setAutoFillBackground(true);
     mm->setPalette(pal);
     ui->mainTabs->addTab(mm, title);
@@ -149,7 +149,7 @@ void MainWindow::clearWorkspace()
 bool MainWindow::loadWorkspaceTab(QDomElement el)
 {
     QMainWindow *mw = 0;
-    QString type = el.attribute("type");    
+    QString type = el.attribute("type");
     if (type=="TraceWindow") {
         mw = createTraceWindow(el.attribute("title"));
     } else if (type=="GraphWindow") {
@@ -463,7 +463,7 @@ void MainWindow::saveTraceToFile()
 
     QFileDialog fileDialog(0, "Save Trace to file", QDir::currentPath(), filters);
     fileDialog.setAcceptMode(QFileDialog::AcceptSave);
-    fileDialog.setConfirmOverwrite(true);
+    fileDialog.setOption(QFileDialog::DontConfirmOverwrite, false);
     fileDialog.selectNameFilter(defaultFilter);
     fileDialog.setDefaultSuffix("asc");
     if (fileDialog.exec()) {
@@ -512,5 +512,11 @@ void MainWindow::on_action_WorkspaceOpen_triggered()
 void MainWindow::on_action_WorkspaceNew_triggered()
 {
     newWorkspace();
+}
+
+
+void MainWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this, "About Qt");
 }
 
